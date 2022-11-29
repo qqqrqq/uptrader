@@ -19,7 +19,7 @@ const getDefaultColumn = (sourse, dest) => {
 }   
 
 
-const onDragEnd = (result, columns,setColumns, dispatch) => {
+const onDragEnd = (result, columns, dispatch, state) => {
     
     if (!result.destination) return
     const { source, destination } = result
@@ -38,16 +38,17 @@ const onDragEnd = (result, columns,setColumns, dispatch) => {
         const destColumn = columns[destination.droppableId]
         const sourseItems = [...sourseColumn.items]
         const destItems = [...destColumn.items]
+        
     
-        
-        
+        const otherProjectsTasks = state.tasks.filter(({projectId}) => projectId !== state.currentProject)
+    
         const [removed] = sourseItems.splice(source.index, 1)
         const timeEndString = `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
         removed.timeEnd = timeEndString
         destItems.splice(destination.index, 0, removed)
 
         removed.status = +destination.droppableId
-        const resultTasks = [...sourseItems,...defaultItems,...destItems]
+        const resultTasks = [...sourseItems,...defaultItems,...destItems, ...otherProjectsTasks]
         
         
 
@@ -75,8 +76,9 @@ const onDragEnd = (result, columns,setColumns, dispatch) => {
         const firstDefaultItems = [...firstDefaultColumn.items]
         const secondDefaultItems = [...secondDefaultColumn.items]
 
+        const otherProjectsTasks = state.tasks.filter(({projectId}) => projectId !== state.currentProject)
 
-        const resultTasks = [...copiedItems, ...firstDefaultItems, ...secondDefaultItems]
+        const resultTasks = [...copiedItems, ...firstDefaultItems, ...secondDefaultItems, ...otherProjectsTasks]
         
         dispatch({type:'MOVE_INCOLUMN',payload: resultTasks})
       
@@ -130,7 +132,7 @@ const TasksCanban = () => {
     
     return (
         <div className={s.taskscanban}>
-            <DragDropContext onDragEnd={result => onDragEnd(result,newColumns,setColumns, dispatch)}>
+            <DragDropContext onDragEnd={result => onDragEnd(result,newColumns, dispatch, state)}>
                 {Object.entries(newColumns).map(([id, column]) => {
                   
                     return (

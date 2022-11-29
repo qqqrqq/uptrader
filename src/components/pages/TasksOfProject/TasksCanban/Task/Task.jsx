@@ -32,9 +32,12 @@ const Task = (props) => {
 
     const setNewSubtask = () => {
         setInputSubtask(false)
-        const allTasks = JSON.parse(localStorage.getItem('redux-store')).tasks
-        const newTasks = allTasks.map(task => {
-            if (task.id !== data.id) {
+        const state = JSON.parse(localStorage.getItem('redux-store'))
+        
+        const newTasks = state.tasks.map(task => {
+         
+            if (task.id !== data.id || task.projectId !== state.currentProject) {
+                
                 return task
             }
 
@@ -71,9 +74,9 @@ const Task = (props) => {
             })
         }
         setChecked(!checked)
-        const allTasks = JSON.parse(localStorage.getItem('redux-store')).tasks
-        const newTasks = allTasks.map(task => {
-            if (task.id !== data.id) {
+        const state = JSON.parse(localStorage.getItem('redux-store'))
+        const newTasks = state.tasks.map(task => {
+            if (task.id !== data.id || task.projectId !== state.currentProject) {
                 return task
             }
             task.status === 3 ? changeStatusAndSubtaskChecked(task, true) : changeStatusAndSubtaskChecked(task, false)
@@ -101,9 +104,9 @@ const Task = (props) => {
     }
     const switchPriority = (priority) =>{
       
-        const allTasks = JSON.parse(localStorage.getItem('redux-store')).tasks
-        const newTasks = allTasks.map(task => {
-            if (task.id !== data.id) {
+        const state = JSON.parse(localStorage.getItem('redux-store'))
+        const newTasks = state.tasks.map(task => {
+            if (task.id !== data.id || state.currentProject !== task.projectId) {
                 return task
             }
 

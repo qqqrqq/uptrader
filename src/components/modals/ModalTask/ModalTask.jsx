@@ -51,9 +51,9 @@ const ModalTask = (props) => {
     const dispatch = useDispatch()
     const status = getStatus(data.status)
     const changeTaskName = () => {
-        const allTasks = JSON.parse(localStorage.getItem('redux-store')).tasks
-        const newTasks = allTasks.map(task => {
-            if (task.id !== data.id) {
+        const state = JSON.parse(localStorage.getItem('redux-store'))
+        const newTasks = state.tasks.map(task => {
+            if (task.id !== data.id || state.currentProject !== task.projectId) {
                 return task
             }
             task.name = nameTaskEditValue
@@ -66,9 +66,9 @@ const ModalTask = (props) => {
     }
 
     const changeDescriptionTask = () => {
-        const allTasks = JSON.parse(localStorage.getItem('redux-store')).tasks
-        const newTasks = allTasks.map(task => {
-            if (task.id !== data.id) {
+        const state = JSON.parse(localStorage.getItem('redux-store'))
+        const newTasks = state.tasks.map(task => {
+            if (task.id !== data.id || state.currentProject !== task.projectId) {
                 return task
             }
             task.description = descriptionTaskEditValue
@@ -95,9 +95,9 @@ const ModalTask = (props) => {
                 url: resultLink
             }
 
-            const allTasks = JSON.parse(localStorage.getItem('redux-store')).tasks
-            const newTasks = allTasks.map(task => {
-                if (task.id !== data.id) {
+            const state = JSON.parse(localStorage.getItem('redux-store'))
+            const newTasks = state.tasks.map(task => {
+                if (task.id !== data.id || state.currentProject !== task.projectId) {
                     return task
                 }
                 task.files.push(fileData)
@@ -117,12 +117,14 @@ const ModalTask = (props) => {
 
     const [countComments, setCountComments] = useState(1)
 
+
     const newCommentData = {
         id: countComments,
         idTask: data.id,
         commentId: commentForReply,
         countComments,
         setCountComments,
+        currentProject: data.projectId,
         comments:[]
     }
 

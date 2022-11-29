@@ -53,7 +53,8 @@ const tasks = (state = stateTasks, action) => {
           }
       }
         return [...state].map(task =>{
-          if(task.id !== action.payload.idTask){
+       
+          if(task.id !== action.payload.idTask || task.projectId !== action.payload.currentProject){
             return task
           }
           if(action.payload.commentId > 0){
