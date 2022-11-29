@@ -1,0 +1,14 @@
+
+.tasksofproject{
+    height: 100vh;
+    width: 100%;
+}
+
+
+
+.taskscanban{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

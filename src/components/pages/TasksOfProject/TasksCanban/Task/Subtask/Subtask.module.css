@@ -1,0 +1,57 @@
+
+
+
+.subtittle {
+    min-height: 25px;
+    background: #24475f;
+    width: 100%;
+    cursor: pointer;
+    padding: 4px 16px 2px 14px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border: 3px solid #286591;
+    display: flex;
+    align-items: center;
+    color: white;
+    transition: 0.3s;
+}
+.taskcheckboxlabel{
+    height: 20px;
+    width: 20px;
+    display: block;
+    position: relative;
+    margin-right: 20px;
+}
+.taskscheckbox{
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    cursor: pointer;
+   
+}
+.taskscheckbox::before{
+    content: '';
+    display: block;
+    height: 13px;
+    width: 13px;
+    background: url(../../../../../../images/check.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%,-50%) scale(0);
+    transition: 0.3s;
+}
+.realcheckbox:checked + .taskscheckbox::before{
+    transform: translate(-50%,-50%) scale(1);
+}
+.checked{
+    opacity: 0.5;
+    transition: 0.3s;
+}

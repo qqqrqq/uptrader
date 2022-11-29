@@ -1,0 +1,59 @@
+
+.addprojects{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;   
+    margin-top: auto;
+}
+.addprojects button{
+    background: none;
+    border: none;
+    color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid white;
+    position: relative;
+    cursor: pointer;
+    margin-right: 5%;
+    transition: 0.3s;
+}
+.addprojects button:hover{
+    transition: 0.3s;
+    opacity: 0.5;
+    transform: scale(1.1);
+}
+.lv{
+    height: 20px;
+    width: 1px;
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.lh{
+    height: 1px;
+    width: 20px;
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@media (max-width: 1133px){
+    .addprojects button{
+        transform: scale(0.5);
+    }
+    .addprojects p{
+        font-size: 10px;
+    }
+}

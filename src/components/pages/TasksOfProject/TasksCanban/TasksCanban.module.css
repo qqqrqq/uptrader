@@ -1,0 +1,51 @@
+
+.taskscanban{
+    margin-top: 5px;
+    display: flex;
+   
+    justify-content: space-between;
+}
+.columncontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.column{
+    min-width: 500px;
+}
+@media (max-width: 1552px){
+    .column{
+        min-width: 350px;
+    }
+}
+@media (max-width: 1250px) {
+    .column{
+        min-width: 250px;
+    }
+}
+@media (max-width: 1050px) {
+    .titlecolumn{
+        font-size: 15px;
+    }
+    .column{
+        min-width: 200px;
+    
+        margin-bottom: auto;
+        padding: 0;
+    }
+    .columncontainer{
+        justify-content: flex-start;
+  
+        margin: 0;
+        align-items: center;
+        padding: 0;
+    }
+}
+@media (max-width: 1050px) {
+    .titlecolumn{
+        font-size: 15px;
+    }
+    .taskscanban{
+        display: block;
+    }
+}

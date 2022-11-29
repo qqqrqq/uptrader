@@ -1,0 +1,144 @@
+
+.addprojectmodal{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: 0.5s;
+}
+.addprojectmodal.active{
+    opacity: 1;
+    transition: 0.5s;
+    pointer-events: all;
+}
+.addprojectmodalcontent{
+    padding: 20px;
+    border-radius: 12px;
+    
+    background: rgb(35, 117, 165);
+    
+    transform: scale(0.5);
+    transition: 0.4s;
+}
+.addprojectmodalcontent input{
+    border: none;
+    outline: none;
+    padding: 15px;
+    width: 100%;
+    color: black;
+    border-radius: 12px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+.addprojectmodalcontent p{
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+.addprojectmodalcontent.active{
+    transition: 0.4s;
+    transform: scale(1);
+}
+.close{
+    display: block;
+    margin-left: auto;
+    background: transparent;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+}
+.close:hover{
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+.close .lv{
+    content: '';
+    width: 1px;
+    height: 15px;
+    background: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    transform: rotate(45deg);
+}
+.close .lh{
+    content: '';
+    width: 15px;
+    height: 1px;
+    background: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    transform: rotate(45deg);
+}
+.addsection{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.add{
+    display: block;
+    margin: auto;
+    background: transparent;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+}
+.add:hover{
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+.add .lv{
+    content: '';
+    width: 1px;
+    height: 25px;
+    background: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+.add .lh{
+    content: '';
+    width: 25px;
+    height: 1px;
+    background: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.emptyfield{
+    color: rgb(216, 79, 79);
+    text-align: center;
+    margin-bottom: 5px;
+}

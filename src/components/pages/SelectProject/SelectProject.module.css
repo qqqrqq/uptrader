@@ -1,0 +1,88 @@
+
+.selectproject {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: rgb(35, 117, 165);
+}
+.selectbar{
+    text-align: center;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+.selectmain{
+    background: rgb(212, 232, 241);
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.selectmain img{
+    display: block;
+    transform: scale(4);
+}
+.selectmain p {
+    margin-top: 50px;
+}
+.title{
+    margin-top: 25%;
+    color: rgb(243, 235, 235);
+    font-weight: 100;
+    width: 100%;
+}
+.projects{
+    margin-top: 30px;
+}
+.projects p{
+    text-align: center;
+    
+    color: rgb(189, 174, 174);
+}
+
+@media (max-width: 1133px){
+    .selectmain img{
+        transform: scale(3);
+    }
+    .title{
+        font-size: 15px;
+    }
+    .projects p{
+        font-size: 10px;
+    }
+    .selectbar{
+        width: 30%;
+    }
+    
+}
+@media (max-width: 745px){
+    .selectmain img{
+        transform: scale(2);
+    }
+    .selectbar{
+        width: 40%;
+    }
+    .selectmain p{
+        font-size: 10px;
+    }
+}
+@media (max-width: 579px){
+    .selectmain img{
+        transform: scale(1);
+    }
+    .selectbar{
+        width: 50%;
+    }
+    .selectmain p{
+        font-size: 7px;
+    }
+}
+@media (max-width: 453px){
+    .selectmain{
+        width: 50%;
+    }
+}

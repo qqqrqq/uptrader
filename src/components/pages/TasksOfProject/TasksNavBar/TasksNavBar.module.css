@@ -1,0 +1,316 @@
+
+.tasksnavbar{
+    height: 70px;
+    width: 100%;
+    background: rgb(35, 117, 165);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px 0 30px;
+}
+
+.tasknavback{
+    color: white;
+    display: flex;
+ 
+    align-items: center;
+}
+
+.tasknavback p{
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.tasknavback:hover .taskbackarrow{
+    transform: scale(1.1);
+    transition: 0.5s;
+  
+}
+
+.taskbackarrow{
+    height: 30px;
+    width: 30px;
+    background: transparent;
+    border-radius: 50%;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.arrowline{
+    content: '';
+    width: 10px;
+    height: 1px;
+    background: white;
+    position: relative;
+}
+.arrowline::after{
+    content: '';
+    position: absolute;
+    left: 3px;
+    height: 7px;
+    width: 1px;
+    background: white;
+    transform: rotate(-45deg);
+}
+.arrowline::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 3px;
+    height: 7px;
+    width: 1px;
+    transform: rotate(45deg);
+    background: white;
+}
+.findtasks{
+    display: flex;
+    border: none;
+    outline: none;
+    padding: 10px;
+    min-width: 50%;
+}
+.findtasks input{
+    display: block;
+    height: 100%;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    border: none;
+}
+.addtask{
+    display: flex;
+    color: white;
+    align-items: center;
+    width: 8%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.addtask p {
+    display: block;
+    padding-right: 8%;
+    font-size: 15px;
+}
+.iconbutton{
+    background: none;
+    border: none;
+    color: white;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    position: relative;
+    cursor: pointer;
+    margin-right: 5%;
+    transition: 0.3s;
+}
+.addtask:hover .iconbutton{
+    transition: 0.3s;
+    opacity: 0.5;
+    transform: scale(1.1);
+}
+.lv{
+    height: 12px;
+    width: 1px;
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.lh{
+    height: 1px;
+    width: 12px;
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+
+.selectfind{
+    width: 80px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    position: relative;
+    background: rgb(201, 211, 216);
+}
+
+.selectitems{
+    display: none;
+   
+}
+.selectitem{
+    width: 100%;
+}
+.selectitems{
+    position: absolute;
+    left: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    top: 90%;
+    padding-top: 11%;
+    height: 100%;
+    background: rgb(201, 211, 216);
+    width: 100%;
+}
+.selectcurrent{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.selectcurrent p{
+    text-align: center;
+   
+    width: 70px;
+    padding: 0;
+}
+
+@media (max-width: 1432px) {
+    .tasknavback p{
+        font-size: 12px;
+    }
+    .addtask p{
+        font-size: 12px;
+    }
+}
+@media (max-width: 1250px) {
+    .tasknavback p{
+        font-size: 10px;
+    }
+    .addtask p{
+        font-size: 10px;
+    }
+    .taskbackarrow{
+        transform: scale(0.8);
+    }
+    .iconbutton{
+        transform: scale(0.8);
+    }
+}
+@media (max-width: 1122px) {
+    .tasknavback p{
+        font-size: 10px;
+    }
+    .addtask{
+        width: 10%;
+    }
+    .addtask p{
+        font-size: 10px;
+    }
+    .taskbackarrow{
+        transform: scale(0.8);
+    }
+    .iconbutton{
+        transform: scale(0.8);
+    }
+}
+@media (max-width: 916px) {
+    .tasknavback p{
+        font-size: 10px;
+    }
+    .addtask{
+        width: 12%;
+    }
+    .addtask p{
+        font-size: 10px;
+    }
+    .taskbackarrow{
+        transform: scale(0.8);
+    }
+    .iconbutton{
+        transform: scale(0.8);
+    }
+    .selectfind{
+        font-size: 12px;
+        
+    }
+}
+@media (max-width: 768px) {
+    .tasknavback p{
+        font-size: 10px;
+    }
+    .addtask{
+        width: 20%;
+    }
+    .addtask p{
+        font-size: 10px;
+    }
+    .taskbackarrow{
+        transform: scale(0.8);
+    }
+    .iconbutton{
+        transform: scale(0.8);
+    }
+    .selectfind{
+        font-size: 12px;
+        
+    }
+}
+@media (max-width: 516px) {
+    .addtask{
+        width: 22%;
+        margin-right: 0;
+     }
+     .findtasks{
+        height: 70%;
+        width: 50%;
+     }
+     .tasknavback{
+        padding:0;
+     }
+}
+@media (max-width: 446px) {
+    .addtask p{
+        font-size: 8px;
+    }
+    .taskbackarrow{
+        transform: scale(0.6);
+    }
+    .iconbutton{
+        transform: scale(0.6);
+    }
+}
+@media (max-width: 400px) {
+    .tasknavback p{
+        font-size: 10px;
+        margin-left: 0;
+    }
+    
+    .addtask{
+       width: 50%;
+       margin-right: 0;
+    }
+    .selectcurrent{
+        width: 80%;
+    }
+    .selectfind{
+        padding: 0;
+        text-align: center;
+        font-size: 10px;
+    }
+    .findtasks{
+        height: 60%;
+        
+    }
+    .findtasks input{
+        font-size: 10px;
+    }
+    .selectfind{
+        width: 35%;
+        font-size: 7px;
+        text-align: left;
+        padding: 0;
+    }
+}
