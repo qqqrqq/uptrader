@@ -148,9 +148,7 @@ const Task = (props) => {
                             {data.name}
                         </div>
                         <div className={s.description}>
-
                             {data.description}
-
                         </div>
                         <div className={s.number}>
                             {data.id}

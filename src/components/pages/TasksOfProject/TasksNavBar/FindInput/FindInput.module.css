@@ -1,0 +1,100 @@
+
+.findtasks{
+    display: flex;
+    border: none;
+    outline: none;
+    padding: 10px;
+    min-width: 50%;
+}
+.findtasks input{
+    display: block;
+    height: 100%;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    border: none;
+}
+.selectfind{
+    width: 80px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    position: relative;
+    background: rgb(201, 211, 216);
+}
+
+.selectitems{
+    display: none;
+   
+}
+.selectitem{
+    width: 100%;
+}
+.selectitems{
+    position: absolute;
+    left: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    top: 90%;
+    padding-top: 11%;
+    height: 100%;
+    background: rgb(201, 211, 216);
+    width: 100%;
+}
+.selectcurrent{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.selectcurrent p{
+    text-align: center;
+   
+    width: 70px;
+    padding: 0;
+}
+@media (max-width: 916px) {
+    .selectfind{
+        font-size: 12px;
+        
+    }
+}
+@media (max-width: 516px) {
+    
+     .findtasks{
+        height: 70%;
+        width: 50%;
+     }
+}
+@media (max-width: 446px) {
+    .findtasks{
+       margin-right: auto;
+       width: 300px;
+    }
+}
+@media (max-width: 400px) {
+    .selectcurrent{
+        width: 80%;
+    }
+    .selectfind{
+        padding: 0;
+        text-align: center;
+        font-size: 10px;
+    }
+    .findtasks{
+        height: 60%;
+        
+    }
+    .findtasks input{
+        font-size: 10px;
+    }
+    .selectfind{
+        width: 35%;
+        font-size: 7px;
+        text-align: left;
+        padding: 0;
+    }
+}

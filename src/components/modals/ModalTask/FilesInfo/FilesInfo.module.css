@@ -1,0 +1,84 @@
+.modaladdfiles{
+    background: rgb(14, 53, 77);
+    height: 150px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 9px 9px 0px 9px;
+    color: white;
+    position: relative;
+}
+.modaladdfiles h2{
+    font-weight: 100;
+}
+
+.modalloadactions{
+    font-size: 10px;
+
+    text-align: right;
+    
+    display: flex;
+    width: 98%;
+    position: absolute;
+    bottom: 6px;
+    justify-content: space-between;
+}
+.fileitem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 6px;
+}
+.fileitem p{
+    font-size: 10px;
+}
+.fileitem img{
+    height: 30px;
+    width: 30px;
+}
+.filesitems{
+    margin-top: 15px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+@media (max-width: 1299px){
+    .modaladdfiles{
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 964px){
+    .modalloadactions{
+        flex-direction: column;
+        align-items: center;
+    }
+    .modaladdfiles h2{
+        position: absolute;
+    }
+    .filesitems{
+        margin-left: 20%;
+        margin-top: 0;
+        overflow: auto;
+    }
+}
+
+@media (max-width: 626px){
+    .modalloadactions{
+     font-size: 8px;
+    }
+    .modalloadactions input{
+     font-size: 8px;
+    }
+ }
+ @media (max-width: 398px){
+     .modaladdfiles h2{
+         font-size: 12px;
+     }
+    .modalloadactions{
+     font-size: 5px;
+    }
+    .modalloadactions input{
+     font-size: 5px;
+    }
+ }

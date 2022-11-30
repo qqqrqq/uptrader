@@ -1,7 +1,7 @@
 
 .addprojectmodal{
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     top: 0;
