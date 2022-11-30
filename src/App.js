@@ -1,32 +1,28 @@
-import React from "react";
+import React from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-} from "react-router-dom";
-import SelectProject from "./components/pages/SelectProject/SelectProject.jsx";
-import TasksOffProject from "./components/pages/TasksOfProject/TasksOfProject";
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import rootReducer from './reducers'
+} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import SelectProject from './components/pages/SelectProject/SelectProject.jsx';
+import TasksOffProject from './components/pages/TasksOfProject/TasksOfProject';
+import rootReducer from './reducers';
 
-const store = createStore(rootReducer)
-const initStore = localStorage.getItem('redux-store')
+const store = createStore(rootReducer);
+const initStore = localStorage.getItem('redux-store');
 
 if (!initStore) {
-  localStorage.setItem('redux-store', JSON.stringify(store.getState()))
+  localStorage.setItem('redux-store', JSON.stringify(store.getState()));
 }
 
 store.subscribe(() => {
-  localStorage['redux-store'] = JSON.stringify(store.getState())
+  localStorage['redux-store'] = JSON.stringify(store.getState());
+});
 
-})
-
-
-
-const App = () => {
-  return (
+const App = () => (
     <Provider store={store}>
       <Router>
         <Routes>
@@ -35,7 +31,6 @@ const App = () => {
         </Routes>
       </Router>
     </Provider>
-  );
-}
+);
 
 export default App;

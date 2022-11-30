@@ -1,5 +1,4 @@
-
-const stateTasks = JSON.parse(localStorage.getItem('redux-store'))?.tasks || []
+const stateTasks = JSON.parse(localStorage.getItem('redux-store'))?.tasks || [];
 
 const tasks = (state = stateTasks, action) => {
   switch (action.type) {
@@ -18,64 +17,62 @@ const tasks = (state = stateTasks, action) => {
           timeCreate: action.payload.timecreate,
           timeEnd: '',
           filter: true,
-          subtasks: []
-        }
-      ]
+          subtasks: [],
+        },
+      ];
     case 'MOVE_TASK':
-      return action.payload
+      return action.payload;
 
     case 'MOVE_INCOLUMN':
-      return action.payload
+      return action.payload;
     case 'ADD_SUBTASK':
-      return action.payload
+      return action.payload;
     case 'ADD_DESCRIPTION':
-      return action.payload
+      return action.payload;
     case 'CHANGE_NAME':
-      return action.payload
+      return action.payload;
     case 'DELETE_WITHPROJECT':
-      return [...state].filter(task => task.projectId !== action.payload)
+      return [...state].filter((task) => task.projectId !== action.payload);
     case 'CHANGE_DESCRIPTION':
-      return action.payload
+      return action.payload;
     case 'ADD_FILE':
-      return action.payload
-    case 'ADD_COMMENT':
-      const findComment = (task, comId) =>{
-          if(task.id === comId){
-            const hasComments = task?.comments[comId-1]
-            hasComments ? hasComments.comments.push(action.payload) : task.comments.push(action.payload)
-            action.payload.setCountComments(action.payload.countComments + 1)
-            return
-          }
-          else{
-            task.comments.map(task =>{
-              findComment(task, comId)
-            })
-          }
-      }
-        return [...state].map(task =>{
-       
-          if(task.id !== action.payload.idTask || task.projectId !== action.payload.currentProject){
-            return task
-          }
-          if(action.payload.commentId > 0){
-            findComment(task, action.payload.commentId )
-            return task
-          }
-          task.comments = [...task.comments, action.payload]
-          action.payload.setCountComments(action.payload.countComments + 1)
-          return task
-        })
-    case 'SET_STATUS' :
-      return action.payload  
+      return action.payload;
+    case 'ADD_COMMENT': {
+      const findComment = (task, comId) => {
+        if (task.id === comId) {
+          const hasComments = task?.comments[comId - 1];
+          hasComments
+            ? hasComments.comments.push(action.payload)
+            : task.comments.push(action.payload);
+          action.payload.setCountComments(action.payload.countComments + 1);
+        } else {
+          task.comments.map((task) => findComment(task, comId));
+        }
+      };
+      return [...state].map((task) => {
+        if (task.id !== action.payload.idTask || task.projectId !== action.payload.currentProject) {
+          return task;
+        }
+        if (action.payload.commentId > 0) {
+          findComment(task, action.payload.commentId);
+          return task;
+        }
+        task.comments = [...task.comments, action.payload];
+        action.payload.setCountComments(action.payload.countComments + 1);
+        return task;
+      });
+    }
+    case 'SET_STATUS':
+      return action.payload;
     case 'SET_SUBTASKCHECK':
-      return action.payload  
+      return action.payload;
     case 'SWITCH_PRIORITY':
-      return action.payload
+      return action.payload;
     case 'SET_FILTER':
-      return action.payload
+      return action.payload;
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default tasks
+export default tasks;

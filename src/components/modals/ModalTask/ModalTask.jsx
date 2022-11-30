@@ -1,147 +1,142 @@
-import s from './ModalTask.module.css'
-import pencil from '../../../images/pencil.svg'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useRef } from 'react'
-import fileimg from '../../../images/file.svg'
-import AddItem from '../AddItem/AddItem.jsx'
+import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+
+import pencil from '../../../images/pencil.svg';
+import s from './ModalTask.module.css';
+import fileimg from '../../../images/file.svg';
+import AddItem from '../AddItem/AddItem.jsx';
+
 const getStatus = (id) => {
-    switch (id) {
-        case 1:
-            return 'Queue'
-        case 2:
-            return 'Development'
-        case 3:
-            return 'Done'
-    }
-}
+  switch (id) {
+    case 1:
+      return 'Queue';
+    case 2:
+      return 'Development';
+    case 3:
+      return 'Done';
+    default:
+      return '';
+  }
+};
 
-const getComment = (comment, replyComment ) => {
-    
-    return (
-        <div key={comment.id} className={`${comment.commentId>0 ? s.subcomment : s.firstcomment} ${s.comment}`} >
-            <p>{comment.name}</p>
+const getComment = (newComment, replyComment) => (
+        <div key={newComment.id} className={`${newComment.commentId > 0 ? s.subcomment : s.firstcomment} ${s.comment}`} >
+            <p>{newComment.name}</p>
             <div className={s.commentbuttons}>
-                <button className={s.addsubcomment} onClick={() => replyComment(comment.id)}></button>
+                <button
+                    className={s.addsubcomment}
+                    onClick={() => replyComment(newComment.id)}>
+                  </button>
             </div>
-            {comment.comments.length > 0 ? comment.comments.map(comment =>{
-                return getComment(comment, replyComment) 
-            }) : '' }
-         
-        </div>
-    )
-}
+            {newComment.comments.length > 0 ? newComment.comments.map((nextComment) => getComment(nextComment, replyComment)) : '' }
 
+        </div>
+);
 
 const ModalTask = (props) => {
-    const { active, setActive, data } = props
-    
-    const [inputNameOpen, setInputNameOpen] = useState(false)
-    const [nameTaskEditValue, setNameTaskValue] = useState(data.name)
+  const {
+    active, setActive, data, timeCreateString, timeAtWork,
+  } = props;
 
-    const [inputDescriptionOpen, setDescriptionNameOpen] = useState(false)
-    const [descriptionTaskEditValue, setDescriptionTaskValue] = useState(data.description)
+  const [inputNameOpen, setInputNameOpen] = useState(false);
+  const [nameTaskEditValue, setNameTaskValue] = useState(data.name);
 
+  const [inputDescriptionOpen, setDescriptionNameOpen] = useState(false);
+  const [descriptionTaskEditValue, setDescriptionTaskValue] = useState(data.description);
 
-    const [modalActive, setModalActive] = useState(false)
-    const [modalActiveReply, setModalActiveReply] = useState(false)
+  const [modalActive, setModalActive] = useState(false);
+  const [modalActiveReply, setModalActiveReply] = useState(false);
 
-    const [commentForReply, setCommentForReply] = useState(null)
+  const [commentForReply, setCommentForReply] = useState(null);
 
-    const dispatch = useDispatch()
-    const status = getStatus(data.status)
-    const changeTaskName = () => {
-        const state = JSON.parse(localStorage.getItem('redux-store'))
-        const newTasks = state.tasks.map(task => {
-            if (task.id !== data.id || state.currentProject !== task.projectId) {
-                return task
-            }
-            task.name = nameTaskEditValue
+  const dispatch = useDispatch();
+  const status = getStatus(data.status);
+  const changeTaskName = () => {
+    const state = JSON.parse(localStorage.getItem('redux-store'));
+    const newTasks = state.tasks.map((task) => {
+      if (task.id !== data.id || state.currentProject !== task.projectId) {
+        return task;
+      }
+      task.name = nameTaskEditValue;
 
-            return task
-        })
+      return task;
+    });
 
-        dispatch({ type: 'CHANGE_NAME', payload: newTasks })
-        setInputNameOpen(false)
-    }
+    dispatch({ type: 'CHANGE_NAME', payload: newTasks });
+    setInputNameOpen(false);
+  };
 
-    const changeDescriptionTask = () => {
-        const state = JSON.parse(localStorage.getItem('redux-store'))
-        const newTasks = state.tasks.map(task => {
-            if (task.id !== data.id || state.currentProject !== task.projectId) {
-                return task
-            }
-            task.description = descriptionTaskEditValue
+  const changeDescriptionTask = () => {
+    const state = JSON.parse(localStorage.getItem('redux-store'));
+    const newTasks = state.tasks.map((task) => {
+      if (task.id !== data.id || state.currentProject !== task.projectId) {
+        return task;
+      }
+      task.description = descriptionTaskEditValue;
 
-            return task
-        })
+      return task;
+    });
 
-        dispatch({ type: 'CHANGE_DESCRIPTION', payload: newTasks })
-        setDescriptionNameOpen(false)
-    }
-    const fileComponent = useRef()
-    const [fileValue, setFileValue] = useState('')
-    const [files, setFiles] = useState([])
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    dispatch({ type: 'CHANGE_DESCRIPTION', payload: newTasks });
+    setDescriptionNameOpen(false);
+  };
+  const fileComponent = useRef();
+  const [fileValue, setFileValue] = useState('');
+  const [files, setFiles] = useState([]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        const filereader = new FileReader()
+    const filereader = new FileReader();
 
-        filereader.onload = function (event) {
-            const resultLink = event.target.result
+    filereader.onload = function onload(event) {
+      const resultLink = event.target.result;
 
-            const fileData = {
-                name: fileValue.name,
-                url: resultLink
-            }
+      const fileData = {
+        name: fileValue.name,
+        url: resultLink,
+      };
 
-            const state = JSON.parse(localStorage.getItem('redux-store'))
-            const newTasks = state.tasks.map(task => {
-                if (task.id !== data.id || state.currentProject !== task.projectId) {
-                    return task
-                }
-                task.files.push(fileData)
-
-                return task
-            })
-
-            setFiles([...files, fileData])
-            dispatch({ type: 'ADD_FILE', payload: newTasks })
+      const state = JSON.parse(localStorage.getItem('redux-store'));
+      const newTasks = state.tasks.map((task) => {
+        if (task.id !== data.id || state.currentProject !== task.projectId) {
+          return task;
         }
-        filereader.readAsDataURL(fileValue)
-    }
-    const handleFileChange = (e) => {
+        task.files.push(fileData);
 
-        setFileValue(e.target.files[0])
-    }
+        return task;
+      });
 
-    const [countComments, setCountComments] = useState(1)
+      setFiles([...files, fileData]);
+      dispatch({ type: 'ADD_FILE', payload: newTasks });
+    };
+    filereader.readAsDataURL(fileValue);
+  };
+  const handleFileChange = (e) => {
+    setFileValue(e.target.files[0]);
+  };
 
+  const [countComments, setCountComments] = useState(1);
 
-    const newCommentData = {
-        id: countComments,
-        idTask: data.id,
-        commentId: commentForReply,
-        countComments,
-        setCountComments,
-        currentProject: data.projectId,
-        comments:[]
-    }
+  const newCommentData = {
+    id: countComments,
+    idTask: data.id,
+    commentId: commentForReply,
+    countComments,
+    setCountComments,
+    currentProject: data.projectId,
+    comments: [],
+  };
 
-    
-
-
-    const replyComment = (id) => {
-        setModalActiveReply(true)
-        setCommentForReply(id)
-
-  
-    }
-    const addNewComment = () =>{
-        setModalActive(true)
-        setCommentForReply(null)
-    }
-    return (
+  const replyComment = (id) => {
+    setModalActiveReply(true);
+    setCommentForReply(id);
+  };
+  const addNewComment = () => {
+    setModalActive(true);
+    setCommentForReply(null);
+  };
+  return (
         <div className={active ? `${s.modaltask} ${s.active}` : s.modaltask} onClick={() => setActive(false)}>
             <div className={active ? `${s.modaltaskkontent} ${s.active}` : s.modaltaskkontent} onClick={(e) => e.stopPropagation()}>
                 <button className={s.close} onClick={() => setActive(false)}>
@@ -181,7 +176,7 @@ const ModalTask = (props) => {
                         </div>
                         <div className={s.modalinfoitem}>
                             <p className={s.modalinfoitemprop}> Created:</p>
-                            <p className={s.modalinfoitemvalue}>{props.timeCreateString}</p>
+                            <p className={s.modalinfoitemvalue}>{timeCreateString}</p>
                         </div>
                         <div className={s.modalinfoitem}>
                             <p className={s.modalinfoitemprop}> Completed:</p>
@@ -189,7 +184,7 @@ const ModalTask = (props) => {
                         </div>
                         <div className={s.modalinfoitem}>
                             <p className={s.modalinfoitemprop}> At work:</p>
-                            <p className={s.modalinfoitemvalue}>{props.timeAtWork}</p>
+                            <p className={s.modalinfoitemvalue}>{timeAtWork}</p>
                         </div>
                         <div className={s.modalinfoitem}>
                             <p className={s.modalinfoitemprop}> Priority:</p>
@@ -201,22 +196,18 @@ const ModalTask = (props) => {
                         </div>
                         <div className={s.modalinfoitem}>
                             <p className={s.modalinfoitemprop}> Subtasks:</p>
-                            <p className={s.modalinfoitemvalue}>{data.subtasks.map(subtask => {
-                                return subtask.value
-                            }).join('; ')}</p>
+                            <p className={s.modalinfoitemvalue}>{data.subtasks.map((subtask) => subtask.value).join('; ')}</p>
                         </div>
                     </div>
                     <div className={s.modalrightside}>
                         <form className={s.modaladdfiles} onSubmit={handleSubmit}>
                             <h2>Files: </h2>
                             <div className={s.filesitems}>
-                                {data.files.map(file => {
-                                    return (
-                                        <div className={s.fileitem}>
+                                {data.files.map((file) => (
+                                        <div key={file.url} className={s.fileitem}>
                                             <img src={fileimg} alt="" />
                                             <p>{file.name}</p>
-                                        </div>)
-                                })}
+                                        </div>))}
                             </div>
                             <div className={s.modalloadactions}>
                                 <p>Download new files:</p>
@@ -228,20 +219,29 @@ const ModalTask = (props) => {
                         <div className={s.addcomments}>
                             <h2>Comments:</h2>
                             <div className={s.commentscontainer}>
-                                {data.comments.length >= 1 ? data.comments.map(comment => {
-                                    return getComment(comment , replyComment)
-                                }) : ''}
+                                {data.comments.length >= 1 ? data.comments.map((comment) => getComment(comment, replyComment)) : ''}
                             </div>
-                            <button className={s.addcommentbutton} onClick={() => addNewComment()}></button>
+                            <button
+                                className={s.addcommentbutton}
+                                onClick={() => addNewComment()}>
+                             </button>
                         </div>
                     </div>
                 </div>
-
 
             </div>
             <AddItem active={modalActiveReply} setActive={setModalActiveReply} title={'Reply to a comment'} action={'ADD_COMMENT'} data={newCommentData} />
             <AddItem active={modalActive} setActive={setModalActive} title={'New comment'} action={'ADD_COMMENT'} data={newCommentData} />
         </div>
-    )
-}
-export default ModalTask
+  );
+};
+
+ModalTask.propTypes = {
+  active: PropTypes.bool.isRequired,
+  setActive: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
+  timeAtWork: PropTypes.string.isRequired,
+  timeCreateString: PropTypes.string.isRequired,
+};
+
+export default ModalTask;
