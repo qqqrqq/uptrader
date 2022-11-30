@@ -126,6 +126,7 @@
     min-height: 400px;
  
 }
+
 .modalinfo{
     width: 20%;
     height: 520px;
@@ -347,6 +348,11 @@
     cursor: pointer;
 }
 @media (max-width: 1299px){
+    
+    .modalinfoedit img{
+        margin-bottom: 15px;
+        
+    }
     .modaltaskkontent{
         position: relative;
     }
@@ -362,11 +368,13 @@
         height: auto;
         height: 150px;
         align-items: center;
-        flex-wrap: wrap;
-       
+        flex-wrap: wrap;  
+    }
+    .modalinfo h2{
+        text-align: left;
     }
     .modalinfoitem{
-        flex-direction: column;
+        
         align-items: center;
         text-align: center;
     }
@@ -374,4 +382,40 @@
     .addcomments{
         height: 250px;
     }
+    .modaladdfiles{
+        margin-top: 15px;
+    }
+}
+@media (max-width: 964px){
+    .modalloadactions{
+        flex-direction: column;
+        align-items: center;
+    }
+    .modaladdfiles h2{
+        position: absolute;
+    }
+    .filesitems{
+        margin-left: 20%;
+        margin-top: 0;
+        overflow: auto;
+    }
+}
+@media (max-width: 626px){
+   .modalloadactions{
+    font-size: 8px;
+   }
+   .modalloadactions input{
+    font-size: 8px;
+   }
+}
+@media (max-width: 398px){
+    .modaladdfiles h2{
+        font-size: 12px;
+    }
+   .modalloadactions{
+    font-size: 5px;
+   }
+   .modalloadactions input{
+    font-size: 5px;
+   }
 }

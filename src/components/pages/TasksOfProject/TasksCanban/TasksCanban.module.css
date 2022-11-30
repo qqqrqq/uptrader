@@ -46,6 +46,6 @@
         font-size: 15px;
     }
     .taskscanban{
-        display: block;
+        overflow: auto;
     }
 }
