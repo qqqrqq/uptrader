@@ -272,6 +272,10 @@
      }
 }
 @media (max-width: 446px) {
+    .findtasks{
+       margin-right: auto;
+       width: 300px;
+    }
     .iconbutton{
         margin-left: auto;
     }

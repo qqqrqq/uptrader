@@ -142,3 +142,8 @@
     text-align: center;
     margin-bottom: 5px;
 }
+.errorVlid{
+    color: brown;
+    margin-bottom: 20px;
+    text-align: center;
+}

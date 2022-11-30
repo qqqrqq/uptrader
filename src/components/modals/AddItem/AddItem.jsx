@@ -11,13 +11,23 @@ const AddItem = (props) => {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState('');
+  const [empty, setEmpty] = useState(false);
 
   const handleChange = (e) => {
     setValue(e.target.value);
+    if (e.target.value.trim() === '') {
+      setEmpty(true);
+    } else {
+      setEmpty(false);
+    }
   };
 
   const addData = (e) => {
     e.preventDefault();
+    if (empty || value.trim() === '') {
+      setEmpty(true);
+      return;
+    }
     const payload = {
       name: value,
       ...data,
@@ -34,6 +44,7 @@ const AddItem = (props) => {
       addData(e);
     }
   };
+
   return (
         <div className={active ? `${s.addprojectmodal} ${s.active}` : s.addprojectmodal} onClick={() => setActive(false)}>
             <form className={active ? `${s.addprojectmodalcontent} ${s.active}` : s.addprojectmodalcontent} onClick={(e) => e.stopPropagation()}>
@@ -46,7 +57,7 @@ const AddItem = (props) => {
                     <p>{title}</p>
                     <input type="text" value={value} onKeyDown={handleKeypress} onChange={(e) => handleChange(e)} />
                 </label>
-                {}
+                {empty ? <div className={s.errorVlid}>Should not be empty</div> : ''}
                 <button type="submit" onClick={(e) => addData(e)} className={s.add}>
                     <div className={s.lh}></div>
                     <div className={s.lv}></div>
