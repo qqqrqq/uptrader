@@ -5,7 +5,7 @@
     border-radius: 12px;
     padding: 9px 9px 0px 9px;
     color: white;
-    position: relative;
+    overflow: auto;
 }
 .modaladdfiles h2{
     font-weight: 100;
@@ -18,8 +18,8 @@
     
     display: flex;
     width: 98%;
-    position: absolute;
     bottom: 6px;
+    margin-top: 15px;
     justify-content: space-between;
 }
 .fileitem{
@@ -27,19 +27,34 @@
     flex-direction: column;
     align-items: center;
     margin-left: 6px;
+   
+}
+.fileitem a{
+    color: rgb(45, 151, 218);
+    font-size: 7px;
 }
 .fileitem p{
     font-size: 10px;
+    word-break: break-all;
+    max-width: 70px;
 }
 .fileitem img{
     height: 30px;
     width: 30px;
 }
+.filesbutton{
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 .filesitems{
-    margin-top: 15px;
+    padding-top: 10px;
+    margin-top: auto;
+  
     display: flex;
     text-align: center;
-    align-items: center;
+    overflow: auto;
 }
 
 @media (max-width: 1299px){
@@ -50,15 +65,19 @@
 
 @media (max-width: 964px){
     .modalloadactions{
+        margin-top: 40px;
         flex-direction: column;
         align-items: center;
     }
     .modaladdfiles h2{
         position: absolute;
     }
+    .modaladdfiles{
+        margin-top: 15px;
+    }
     .filesitems{
-        margin-left: 20%;
-        margin-top: 0;
+        
+        margin-top: 15px;
         overflow: auto;
     }
 }
